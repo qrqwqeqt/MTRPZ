@@ -1,20 +1,12 @@
 import re
 import os
 
-filePath = 'c:\\Users\\user\\Desktop\\йцу\\md.md'
-
-if not filePath:
-    raise ValueError('No file path provided')
-
 bold_regex = r"\*\*(?=\S)(.+?)(?<=\S)\*\*(?=\s|$)"
 italic_regex = r"_(?=\S)(.+?)(?<=\S)_(?=\s|$)"
 monospaced_regex = r"`(?=\S)(.+?)(?<=\S)`(?=\s|$)"
 regexps = [bold_regex, italic_regex, monospaced_regex]
 
 markers = ['**', '_', '`']
-
-with open(filePath, 'r', encoding='utf-8') as file:
-    md = file.read()
 
 def set_paragraphs(text):
     paragraphs = list(filter(None, text.split('\n\n')))
@@ -46,7 +38,13 @@ def nested_markers_checker(text, regex, marker):
                 len(re.findall(r"`", sliced_part)) > 1):
                 raise ValueError('Nested markers are not allowed')
 
-def markdown_to_html():
+def markdown_to_html(filePath):
+    if not filePath:
+        raise ValueError('No file path provided')
+
+    with open(filePath, 'r', encoding='utf-8') as file:
+        md = file.read()
+
     parts = md.split('```')
     if len(parts) % 2 == 0:
         raise ValueError('No closing preformatted marker provided')
@@ -63,6 +61,7 @@ def markdown_to_html():
     return ''.join(parts)
 
 
-html = markdown_to_html()
+
+html = markdown_to_html('path/to/test/md.md')
 with open('output.html', 'w', encoding='utf-8') as f:
     f.write(html)
