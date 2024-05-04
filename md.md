@@ -19,12 +19,10 @@
 _aboba_
 _abo_ba_
 _ab_ oba_
-_ab**o**ba_
 
 
 '''
 _aboba_
 _abo_ba_
 _ab_ oba_
-_ab**o**ba_
 '''
