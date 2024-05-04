@@ -62,6 +62,6 @@ def markdown_to_html(filePath):
 
 
 
-html = markdown_to_html('path/to/test/md.md')
+html = markdown_to_html('md.md')
 with open('output.html', 'w', encoding='utf-8') as f:
     f.write(html)
