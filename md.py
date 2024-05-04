@@ -1,3 +1,5 @@
+import argparse
+from colorama import Fore, Back, Style
 import re
 import os
 
@@ -60,8 +62,26 @@ def markdown_to_html(filePath):
 
     return ''.join(parts)
 
+# Створюємо парсер аргументів
+parser = argparse.ArgumentParser(description='Markdown to HTML converter')
+parser.add_argument('--format', type=str, help='Output format')
 
+# Розбираємо аргументи командного рядка
+args = parser.parse_args()
 
+# Визначаємо формат виводу
+output_format = args.format if args.format else 'console'
+
+# Виконуємо перетворення
 html = markdown_to_html('md.md')
-with open('output.html', 'w', encoding='utf-8') as f:
-    f.write(html)
+
+# Виводимо результат
+if output_format == 'console':
+    # Виводимо в консоль з використанням ANSI Escape Codes
+    print(Fore.GREEN + Style.BRIGHT + html + Style.RESET_ALL)
+elif output_format == 'file':
+    # Виводимо в файл
+    with open('output.html', 'w', encoding='utf-8') as f:
+        f.write(html)
+else:
+    print(f'Unsupported format: {output_format}')
