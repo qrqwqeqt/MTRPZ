@@ -56,3 +56,8 @@ python MDtoHTML.py example.md example.html
 will generate an HTML file named `example.html` with the converted content.
 
 
+[Коміт, де лягли тести](https://github.com/qrqwqeqt/MTRPZ/commit/55a4e0cd0fe972bec2e3decc725f19f529965339)
+
+за допомогою unit-тестів я випадково помітив, де само зробив помилку, та завдяки цьому, не витратив багато часу на пошук помилки в коді.
+
+
